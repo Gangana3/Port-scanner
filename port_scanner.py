@@ -5,7 +5,7 @@
 
                     PORT SCANNER
 
-        This code provides a convinient CLI
+        This code provides a convenient CLI
         based port-scanner. The user gives the IP
         which he wants to scan and this script scans
         all the ports in the ip given.
@@ -17,9 +17,10 @@
 
         ===============ALERT================
         This script should NOT be use
-        for inapropiate purposes, The script
-            writer does not take any
-        responsebility for unethical actions.
+        for inappropriate purposes, The script
+        writer does not take any
+        responsibility for unethical uses
+        of this script.
         =====================================
 
 
@@ -29,11 +30,9 @@
 Version: 1.0.0
 Author: Gangana3
 """
-import re
-import socket
-import thread
 import argparse
 from scapy.all import *
+from threading import Thread
 
 DESCRIPTION = """
 ######################## PORT SCANNER #############################
@@ -48,6 +47,7 @@ DESCRIPTION = """
 """
 timeout = 0.5  # time to wait to syn+ack response
 address = '127.0.0.1'  # address to scan the ports on
+_ports_scanned = 0
 
 
 def is_connected():
@@ -102,6 +102,22 @@ def is_port_open(port):
         return False
 
 
+def scan_ports(start, limit):
+    """
+    This function scans all the ports from start to the limit
+    :param start: first port to scan
+    :param limit: last port to scan
+    :return: None
+    """
+    global _ports_scanned   # counter
+    # start scanning
+    for i in xrange(start, limit):
+        if is_port_open(i):
+            # in case current port is open
+            print '=> port {} is open!'.format(i)
+        _ports_scanned += 1
+
+
 def main():
     # make sure that user is connected to the internet
     if not is_connected():
@@ -131,28 +147,32 @@ def main():
     address = args.address
     timeout = args.timeout
 
+    # validate ip address
+    if not is_ip(address):
+        # in case address is not in IPv4 format
+        address = socket.gethostbyname(address)
+
     print """
 ---------------------------->
       SCANNING STARTED!
+      scanning {}
 ---------------------------->
-    """
-
-    ports_scanned = 0  # counter
+    """.format(address)
+    scan_thread = Thread(target=scan_ports, args=(args.start, args.limit))
+    scan_thread.daemon = True
     try:
-        # start scanning
-        for i in xrange(args.start, args.limit):
-            if is_port_open(i):
-                # in case current port is open
-                print '=> port {} is open!'.format(i)
-            ports_scanned += 1
+        scan_thread.start()
+        while scan_thread.is_alive():
+            # wait for the scan_thread to be completed
+            time.sleep(0.2)
     except KeyboardInterrupt:
-        pass
+        print '\r            '  # hide the ^C sign when user pressed it
     finally:
         print """
 --------------------------------------------------------------
     => Process Finished! {} ports were scanned!
 --------------------------------------------------------------
-        """.format(ports_scanned)
+        """.format(_ports_scanned)
 
 
 if __name__ == '__main__':
