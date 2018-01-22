@@ -1,6 +1,30 @@
 """
-This script contains a port scanner function
+-------------------------------------------------------
 
+		   PORT SCANNER
+
+	This code provides a convinient CLI
+	based port-scanner. The user gives the IP
+	which he wants to scan and this script scans
+	all the ports in the ip given.
+	
+	The computer MUST be connected 
+	to the internet in order to use this
+	script.
+	
+	
+    ===============ALERT================
+	This script should NOT be use
+	for inapropiate purposes, The script
+        writer does not take any 
+	responsebility for unethical actions.
+    =====================================
+
+
+© All rights reserved
+-------------------------------------------------------
+
+Version: 1.0.0
 Author: Gangana3
 """
 import re
