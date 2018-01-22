@@ -1,27 +1,29 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 -------------------------------------------------------
 
-		   PORT SCANNER
+                    PORT SCANNER
 
-	This code provides a convinient CLI
-	based port-scanner. The user gives the IP
-	which he wants to scan and this script scans
-	all the ports in the ip given.
-	
-	The computer MUST be connected 
-	to the internet in order to use this
-	script.
-	
-	
-    ===============ALERT================
-	This script should NOT be use
-	for inapropiate purposes, The script
-        writer does not take any 
-	responsebility for unethical actions.
-    =====================================
+        This code provides a convinient CLI
+        based port-scanner. The user gives the IP
+        which he wants to scan and this script scans
+        all the ports in the ip given.
+
+        The computer MUST be connected
+        to the internet in order to use this
+        script.
 
 
-© All rights reserved
+        ===============ALERT================
+        This script should NOT be use
+        for inapropiate purposes, The script
+            writer does not take any
+        responsebility for unethical actions.
+        =====================================
+
+
+        © All rights reserved
 -------------------------------------------------------
 
 Version: 1.0.0
@@ -32,7 +34,6 @@ import socket
 import thread
 import argparse
 from scapy.all import *
-
 
 DESCRIPTION = """
 ######################## PORT SCANNER #############################
@@ -45,7 +46,7 @@ DESCRIPTION = """
                             
 ###################################################################
 """
-timeout = 0.5          # time to wait to syn+ack response
+timeout = 0.5  # time to wait to syn+ack response
 address = '127.0.0.1'  # address to scan the ports on
 
 
@@ -57,7 +58,7 @@ def is_connected():
     con_socket = socket.socket()
     try:
         con_socket.connect(('www.google.com', 443))
-        return True     # in case managed to create connection
+        return True  # in case managed to create connection
     except socket.error:
         # in case connection failed
         return False
@@ -109,7 +110,7 @@ def main():
               'internet!'
         exit(1)
 
-    num_of_ports = 2**16
+    num_of_ports = 2 ** 16
 
     # initialize the argument parser
     parser = argparse.ArgumentParser(description=DESCRIPTION)
@@ -119,8 +120,9 @@ def main():
                         action='store', default=num_of_ports, type=int)
     parser.add_argument('-s', '--start', help='Port to start scanning from',
                         action='store', default=0, type=int)
-    parser.add_argument('-t', '--timeout', help='Timeout between each port scan'
-                        , action='store', default=1, type=float)
+    parser.add_argument('-t', '--timeout',
+                        help='Timeout between each port scan', action='store',
+                        default=1, type=float)
     args = parser.parse_args()
 
     # assign global variables
