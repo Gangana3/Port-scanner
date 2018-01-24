@@ -58,6 +58,8 @@ def main():
             print 'The installation must be run as Administrator!\n' \
                   'Try running the file as administrator.'
 
+        print 'Installed successfully!'
+
 
 if __name__ == '__main__':
     main()
