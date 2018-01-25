@@ -91,8 +91,9 @@ def main():
         elif os.name == 'nt':
             print 'The installation must be run as Administrator!\n' \
                   'Try running the file as administrator.'
+        exit(1)
 
-        print 'Installed successfully!'
+    print 'Installed successfully!'
 
 
 if __name__ == '__main__':
