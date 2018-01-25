@@ -50,7 +50,7 @@ we sent the packet to will be considered **closed**.
 
 #### Examples
 The following code will scan the ports from 10 to 1024 with timeout of 1 second:
-
+```
 User:~$ sudo portscan 192.168.13.250 --start 10--limit 1024 --timeout 1 
 ---------------------------->
       SCANNING STARTED!
