@@ -49,29 +49,9 @@ specified here, if the SYN packet we sent did not get a response, it will be mar
 we sent the packet to will be considered **closed**.
 
 #### Examples
-#####Unix
-```
-User:~$ sudo portscan www.FooWebsite.com //*scan all the ports in 'www.FooWebsite.com'*
----------------------------->
-      SCANNING STARTED!
-      scanning 123.123.123.123	
----------------------------->
-    
-=> port 22 is open!
-=> port 23 is open!
-=> port 53 is open!
-=> port 80 is open!
-=> port 139 is open!
-=> port 445 is open!
-            
+The following code will scan the ports from 10 to 1024 with timeout of 1 second:
 
---------------------------------------------------------------
-    => Process Finished! 65536 ports were scanned!
---------------------------------------------------------------
-
-//*obviously you don'w want to scan 65536 ports because it will take a lot of time*
-
-User:~$ sudo portscan 192.168.13.250 --limit 1024 --timeout 1 //* scan ports between 0 - 1024 in given ip with timeout of 1 second*
+User:~$ sudo portscan 192.168.13.250 --start 10--limit 1024 --timeout 1 
 ---------------------------->
       SCANNING STARTED!
       scanning 192.168.13.250
@@ -90,6 +70,8 @@ User:~$ sudo portscan 192.168.13.250 --limit 1024 --timeout 1 //* scan ports bet
 --------------------------------------------------------------
 
 ```
+
+To do the same thing on windows just type: `portscan.py 192.168.13.250 --start 10--limit 1024 --timeout 1`
 
 
 
