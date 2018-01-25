@@ -2,11 +2,18 @@
 This file is used to install the port scanning script as
 a commend known by the terminal/cmd.
 
-after installed, can be used in terminal/cmd this way:
+after installed, can be used in terminal this way:
 portscan <address>
+
+or in the cmd this way:
+portscan.py <address>
+
+HAVE FUN! :)
 
 Author: Gangana3
 """
+
+
 import os
 from shutil import copy
 
@@ -21,7 +28,27 @@ def windows_install():
     Installs the program on windows based systems
     :return: None
     """
-    pass
+    path_var = os.environ['PATH']   # %PATH% environment variable
+    if path_var.endswith(';'):
+        setx_command = 'setx PATH {}{};'
+    else:
+        setx_command = 'sex PATH {};{}'
+
+    # format the setx command
+    setx_command = setx_command.format(path_var, os.getcwd())
+
+    # execute setx command and add the script's path to %PATH%
+    os.system(setx_command)
+
+    # rename the script
+    os.rename(SCRIPT_NAME, COMMAND_NAME + '.py')
+
+    try:
+        import scapy
+    except ImportError:
+        # in case scapy is not installed
+        scapy = None
+        os.system('python2.7 -m pip install scapy')     # install scapy
 
 
 def unix_install():
@@ -39,6 +66,13 @@ def unix_install():
                                                                  COMMAND_NAME))
     # make the script executable
     os.system('cd {}\nchmod +x {}'.format(UNIX_DEST, COMMAND_NAME))
+
+    try:
+        import scapy
+    except ImportError:
+        # in case scapy is not installed
+        scapy = None
+        os.system('python2.7 -m pip install scapy')     # install scapy
 
 
 def main():
