@@ -30,9 +30,9 @@ def windows_install():
     """
     path_var = os.environ['PATH']   # %PATH% environment variable
     if path_var.endswith(';'):
-        setx_command = 'setx PATH {}{};'
+        setx_command = 'setx PATH "{}{};"'
     else:
-        setx_command = 'sex PATH {};{}'
+        setx_command = 'sex PATH "{};{}"'
 
     # format the setx command
     setx_command = setx_command.format(path_var, os.getcwd())
@@ -48,7 +48,7 @@ def windows_install():
     except ImportError:
         # in case scapy is not installed
         scapy = None
-        os.system('python2.7 -m pip install scapy')     # install scapy
+        os.system('python -m pip install scapy')     # install scapy
 
 
 def unix_install():
