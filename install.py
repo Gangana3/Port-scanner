@@ -27,8 +27,13 @@ def windows_install():
     """
     Installs the program on windows based systems
     :return: None
-    """
+    """	
     path_var = os.environ['PATH']   # %PATH% environment variable
+
+	if os.getcwd() in path_var:
+		# in case the script's directory already in %PATH%
+		return 	# quit the function
+
     if path_var.endswith(';'):
         setx_command = 'setx PATH "{}{};"'
     else:
