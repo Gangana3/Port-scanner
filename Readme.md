@@ -12,9 +12,10 @@ If not installed, the installer.py will install it automatically.
 ### Unix Installation
 
 Here are the steps for installing the port scanner on Unix:
+
  - **step 1:** open up the terminal
  - **step 2:** navigate to the script's directory usind **cd** command
- - **step 3:** type `sudo python installer.py`
+ - **step 3:** type `sudo python install.py`
  
 ### Windows Installation
 
