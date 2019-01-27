@@ -22,9 +22,9 @@ Here are the steps for installing the port scanner on Unix:
 
 Here are the steps for installing the port scanner on Windows:
 
- - **step1:** run the cmd as administrator
- - **step2:** navigate to the script's directory using **cd** command.
- - **step3:** type `python install.py`
+ - **step 1:** run the cmd as administrator
+ - **step 2:** navigate to the script's directory using **cd** command.
+ - **step 3:** type `python install.py`
 
 
 ## How To Use?
