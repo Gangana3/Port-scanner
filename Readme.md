@@ -1,4 +1,5 @@
 # Port-Scanner
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/organic5?locale.x=en_US)
 
 This is a **CLI** based port scanner for both windows and linux. After installing the port scanner 
 you can scan the ports of any Device that's connected to the internet such as routers, servers, etc. 
